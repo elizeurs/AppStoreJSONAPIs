@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7549896226A0E5F700526019 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7549896126A0E5F700526019 /* SearchResultCell.swift */; };
 		7574768B269F78F600871FB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7574768A269F78F600871FB2 /* AppDelegate.swift */; };
 		7574768D269F78F600871FB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7574768C269F78F600871FB2 /* SceneDelegate.swift */; };
 		7574768F269F78F600871FB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7574768E269F78F600871FB2 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7549896126A0E5F700526019 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		75747687269F78F600871FB2 /* AppStoreJSONApis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreJSONApis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7574768A269F78F600871FB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7574768C269F78F600871FB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7549896026A0E5CD00526019 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7549896126A0E5F700526019 /* SearchResultCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		7574767E269F78F600871FB2 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +70,7 @@
 		75747689269F78F600871FB2 /* AppStoreJSONApis */ = {
 			isa = PBXGroup;
 			children = (
+				7549896026A0E5CD00526019 /* Views */,
 				757476A0269FA4D800871FB2 /* Controller */,
 				7574768A269F78F600871FB2 /* AppDelegate.swift */,
 				7574768C269F78F600871FB2 /* SceneDelegate.swift */,
@@ -155,6 +166,7 @@
 				7574768F269F78F600871FB2 /* ViewController.swift in Sources */,
 				7574768B269F78F600871FB2 /* AppDelegate.swift in Sources */,
 				757476A2269FA52800871FB2 /* AppsSearchController.swift in Sources */,
+				7549896226A0E5F700526019 /* SearchResultCell.swift in Sources */,
 				7574768D269F78F600871FB2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
