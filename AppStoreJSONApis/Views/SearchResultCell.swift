@@ -9,7 +9,7 @@ import UIKit
 
 class SearchResultCell: UICollectionViewCell {
   
-  let imageView: UIImageView = {
+  let appIconImageView: UIImageView = {
     let iv = UIImageView()
     iv.backgroundColor = .red
     iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
@@ -41,29 +41,54 @@ class SearchResultCell: UICollectionViewCell {
     button.setTitle("GET", for: .normal)
     button.setTitleColor(.blue, for: .normal)
     button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-    button.backgroundColor = .gray
+    button.backgroundColor = UIColor(white: 0.95, alpha: 1)
     button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+    button.heightAnchor.constraint(equalToConstant: 32).isActive = true
+    button.layer.cornerRadius = 16
     return button
   }()
+  
+  lazy var screenshot1ImageView = self.createScreenShotImageView()
+  lazy var screenshot2ImageView = self.createScreenShotImageView()
+  lazy var screenshot3ImageView = self.createScreenShotImageView()
+  
+  func createScreenShotImageView() -> UIImageView {
+    let imageView =  UIImageView()
+    imageView.backgroundColor = .blue
+    return imageView
+  }
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    backgroundColor = .yellow
+//    backgroundColor = .yellow
     
-    let labelsStackView = UIStackView(arrangedSubviews: [nameLabel, categoryLabel, ratingsLabel])
-    labelsStackView.axis = .vertical
+//    let labelsStackView = UIStackView(arrangedSubviews: [nameLabel, categoryLabel, ratingsLabel])
+//    labelsStackView.axis = .vertical
     
-    let stackView = UIStackView(arrangedSubviews: [imageView, labelsStackView, getButton])
-    stackView.spacing = 12
-    stackView.alignment = .center
+//    let labelsStackView = VerticalStackView(arrangedSubviews: [nameLabel, categoryLabel, ratingsLabel])
     
-    addSubview(stackView)
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-    stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-    stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-    stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+    let infoTopStackView = UIStackView(arrangedSubviews: [appIconImageView, VerticalStackView(arrangedSubviews: [nameLabel, categoryLabel, ratingsLabel]), getButton])
+    infoTopStackView.spacing = 12
+    infoTopStackView.alignment = .center
+    
+    let screenshotsStackView = UIStackView(arrangedSubviews: [screenshot1ImageView, screenshot2ImageView, screenshot3ImageView])
+    screenshotsStackView.spacing = 12
+    screenshotsStackView.distribution = .fillEqually
+    
+//    let overallStackView = UIStackView(arrangedSubviews: [infoTopStackView, screenshotsStackView])
+//    overallStackView.axis = .vertical
+//    overallStackView.spacing = 16
+    
+    let overallStackView = VerticalStackView(arrangedSubviews: [infoTopStackView, screenshotsStackView], spacing: 16)
+    
+    addSubview(overallStackView)
+    overallStackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
+//    stackView.translatesAutoresizingMaskIntoConstraints = false
+//    stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+//    stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
+//    stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+//    stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
   }
   
   required init?(coder: NSCoder) {
