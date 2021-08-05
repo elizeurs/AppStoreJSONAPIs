@@ -21,13 +21,18 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
     collectionView.register(TodayCell.self, forCellWithReuseIdentifier: cellId)
   }
   
+  var appFullscreenController: UIViewController!
+  
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-    let redView = UIView()
-    redView.backgroundColor = .red
+    let appFullscreenController = AppFullscreenController()
+    let redView = appFullscreenController.view!
     redView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView)))
     view.addSubview(redView)
-//    redView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
+    
+    addChild(appFullscreenController)
+    
+    self.appFullscreenController = appFullscreenController
     
     guard let cell = collectionView.cellForItem(at: indexPath) else { return }
     
@@ -39,7 +44,12 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
     redView.layer.cornerRadius = 16
     
     UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+      
       redView.frame = self.view.frame
+      
+      // hide tabbar is not working for some reason
+//      self.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
+      
     }, completion: nil)
     
 //    print("Animate fullscreen somehow...")
@@ -48,13 +58,18 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
   var startingFrame: CGRect?
   
   @objc func handleRemoveRedView(gesture: UITapGestureRecognizer) {
-//    gesture.view?.removeFromSuperview()
     // access startingFrame
     UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
 //      redView.frame = self.view.frame
+      
       gesture.view?.frame = self.startingFrame ?? .zero
+      
+      // bring back tabbar is not working for some reason
+//      self.tabBarController?.tabBar.transform = .identity
+      
     }, completion: { _ in
       gesture.view?.removeFromSuperview()
+      self.appFullscreenController.removeFromParent()
     })
   }
   
