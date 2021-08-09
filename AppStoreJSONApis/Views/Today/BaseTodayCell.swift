@@ -5,4 +5,9 @@
 //  Created by Elizeu RS on 08/08/21.
 //
 
-import Foundation
+import UIKit
+
+class BaseTodayCell: UICollectionViewCell {
+  
+  var todayItem: TodayItem!
+}
