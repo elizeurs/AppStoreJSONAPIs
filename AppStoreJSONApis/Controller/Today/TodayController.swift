@@ -9,19 +9,6 @@ import UIKit
 
 class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
   
-  //  fileprivate let cellId = "cellId"
-  //  fileprivate let multipleAppCellId = "multipleAppCellId"
-  
-  //  let items = [
-  //    TodayItem.init(category: "LIFE HACK" , title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: .white, cellType: .single),
-  //
-  //    TodayItem.init(category: "SECOND CELL" , title: "Test-Drive These CarPlay Apps", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple),
-  //
-  //    TodayItem.init(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "holiday"), description: "Find out all you need to know on how to travel without packing everything!" , backgroundColor: #colorLiteral(red: 0.9776768088, green: 0.9633819461, blue: 0.7273009419, alpha: 1), cellType: .single),
-  //
-  //    TodayItem.init(category: "MULTIPLE CELL" , title: "Test-Drive These CarPlay Apps", image: #imageLiteral(resourceName: "garden"), description: "", backgroundColor: .white, cellType: .multiple)
-  //  ]
-  
   var items = [TodayItem]()
   
   let activityIndicatorView: UIActivityIndicatorView = {
@@ -96,6 +83,13 @@ class TodayController: BaseListController, UICollectionViewDelegateFlowLayout {
   var heightConstraint: NSLayoutConstraint?
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    if items[indexPath.item].cellType == .multiple {
+      let fullController = TodayMultipleAppsController(mode: .fullscreen)
+      fullController.results = self.items[indexPath.item].apps
+      present(fullController, animated: true)
+      return
+    }
     
     let appFullscreenController = AppFullscreenController()
     appFullscreenController.todayItem = items[indexPath.row]
