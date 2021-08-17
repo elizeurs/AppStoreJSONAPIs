@@ -10,7 +10,7 @@ import UIKit
 class TrackCell: UICollectionViewCell {
   
   let imageView = UIImageView(cornerRadius: 16)
-  let nameLabel = UILabel(text: "Track Name", font: .systemFont(ofSize: 18), numberOfLines: 2)
+  let nameLabel = UILabel(text: "Track Name", font: .boldSystemFont(ofSize: 18))
   let subtitleLabel = UILabel(text: "Subtitle Label", font: .systemFont(ofSize: 16), numberOfLines: 2)
   
   override init(frame: CGRect) {
@@ -28,6 +28,7 @@ class TrackCell: UICollectionViewCell {
     stackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
     stackView.alignment = .center
     
+//    backgroundColor = .red
   }
   
   required init?(coder: NSCoder) {
