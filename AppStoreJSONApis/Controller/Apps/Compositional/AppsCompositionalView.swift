@@ -10,7 +10,20 @@ import SwiftUI
 class CompositionalController: UICollectionViewController {
   
   init() {
-    super.init(collectionViewLayout: UICollectionViewFlowLayout())
+//    UICollectionViewCompositionalLayout()
+    
+    let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+    item.contentInsets.bottom = 16
+    item.contentInsets.trailing = 16
+    
+    let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.8), heightDimension: .absolute(300)), subitems: [item])
+    let section = NSCollectionLayoutSection(group: group)
+    section.orthogonalScrollingBehavior = .groupPaging
+    section.contentInsets.leading = 32
+    
+    let layout = UICollectionViewCompositionalLayout(section: section)
+    
+    super.init(collectionViewLayout: layout)
   }
   
   required init?(coder: NSCoder) {
@@ -18,7 +31,7 @@ class CompositionalController: UICollectionViewController {
   }
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 5
+    return 8
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -30,7 +43,7 @@ class CompositionalController: UICollectionViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
-    collectionView.backgroundColor = .yellow
+    collectionView.backgroundColor = .white
     navigationItem.title = "Apps"
     navigationController?.navigationBar.prefersLargeTitles = true
   }
@@ -38,7 +51,7 @@ class CompositionalController: UICollectionViewController {
 
 struct AppsView: UIViewControllerRepresentable {
   func makeUIViewController(context: UIViewControllerRepresentableContext<AppsView>) -> UIViewController {
-    let controller = CompositionalController(collectionViewLayout: UICollectionViewFlowLayout())
+    let controller = CompositionalController()
     return UINavigationController(rootViewController: controller)
   }
   
